@@ -16,7 +16,7 @@
         class="max-w-[1200px] mx-auto w-full flex flex-col gap-10 pb-[50px] bg-[url('assets/background/Hero-Banner.png')] bg-center bg-no-repeat bg-cover rounded-[32px] overflow-hidden">
         <nav class="flex justify-between items-center pt-6 px-[50px]">
             <a href="">
-                <img src="assets/logo/logo.svg" alt="logo">
+                <img src="assets/logo/logo-cdc.png" alt="logo" class="w-[64px] h-[50px]">
             </a>
             <ul class="flex items-center gap-[30px] text-white">
                 <li>
@@ -829,7 +829,7 @@
         <div class="flex justify-between">
             <a href="">
                 <div>
-                    <img src="assets/logo/logo-black.svg" alt="logo">
+                    <img src="assets/logo/logo-cdc.png" alt="logo"class="w-[64px] h-[50px]">
                 </div>
             </a>
             <div class="flex flex-col gap-5">
