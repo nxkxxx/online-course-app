@@ -30,7 +30,7 @@
         <div class="mt-4">
             <x-input-label for="avatar" :value="__('Avatar')" />
             <x-text-input id="avatar" class="block mt-1 w-full" type="file" name="avatar" :value="old('avatar')"
-                required autocomplete="username" />
+                required autocomplete="avatar" />
             <x-input-error :messages="$errors->get('avatar')" class="mt-2" />
         </div>
 
