@@ -19,7 +19,6 @@
 
                 <form method="POST" action="{{ route('admin.teachers.store') }}" enctype="multipart/form-data">
                     @csrf
-
                     <div>
                         <x-input-label for="email" :value="__('email')" />
                         <x-text-input id="email" class="block mt-1 w-full" type="text" name="email"

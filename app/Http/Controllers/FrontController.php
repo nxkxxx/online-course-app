@@ -15,9 +15,10 @@ class FrontController extends Controller
 {
     public function index()
     {
+        $categories = Category::all();
         $courses = Course::with(['category', 'teacher', 'students'])->orderByDesc('id')->get();
 
-        return view('front.index', compact('courses'));
+        return view('front.index', compact('courses', 'categories'));
     }
 
     public function details(Course $course)
@@ -66,6 +67,8 @@ class FrontController extends Controller
 
     public function checkout_store(StoreSubscribeTransactionRequest $request)
     {
+        $user = Auth::user();
+        
         if (Auth::user()->hasActiveSubscription()) {
             return redirect()->route('front.index');
         }

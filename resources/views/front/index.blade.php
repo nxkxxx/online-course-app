@@ -24,19 +24,13 @@
                 </li>
                 @if (!Auth::user())
                     <li>
-                        <a href="{{ route('login', ['from_pricing' => true]) }}" class="font-semibold">Profile</a>
+                        <a href="{{ route('login', ['from_pricing' => true]) }}" class="font-semibold">Pricing</a>
                     </li>
                 @elseif (Auth::user()->hasRole('student') || Auth::user()->hasRole('owner') || Auth::user()->hasRole('teacher'))
                     <li>
-                        <a href="{{ route('front.pricing') }}" class="font-semibold">Profile</a>
+                        <a href="{{ route('front.pricing') }}" class="font-semibold">Pricing</a>
                     </li>
                 @endif
-                <li>
-                    <a href="#" class="font-semibold">Softskill</a>
-                </li>
-                <li>
-                    <a href="#" class="font-semibold">Hardskill</a>
-                </li>
             </ul>
             @auth
                 <div class="flex gap-[10px] items-center">
@@ -124,27 +118,15 @@
             </div>
         </div>
         <div class="grid grid-cols-4 gap-[30px]">
-            <a href="{{ route('front.category', 'business-intelligence') }}"
+            @foreach ($categories as $category)
+            <a href="{{ route('front.category', $category->slug) }}"
                 class="card flex items-center p-4 gap-3 ring-1 ring-[#DADEE4] rounded-2xl hover:ring-2 hover:ring-[#FF6129] transition-all duration-300">
                 <div class="w-[70px] h-[70px] flex shrink-0">
-                    <img src="assets/icon/Web Development 1-1.svg" class="object-contain" alt="icon">
+                    <img src="{{ Storage::url($category->icon) }}" class="object-contain" alt="icon">
                 </div>
-                <p class="font-bold text-lg">Business Intelligence</p>
+                <p class="font-bold text-lg">{{ $category->name }}</p>
             </a>
-            <a href="{{ route('front.category', 'freelancing-journey') }}"
-                class="card flex items-center p-4 gap-3 ring-1 ring-[#DADEE4] rounded-2xl hover:ring-2 hover:ring-[#FF6129] transition-all duration-300">
-                <div class="w-[70px] h-[70px] flex shrink-0">
-                    <img src="assets/icon/Web Development 1-2.svg" class="object-contain" alt="icon">
-                </div>
-                <p class="font-bold text-lg">Freelancing Journey</p>
-            </a>
-            <a href="{{ route('front.category', 'software-development') }}"
-                class="card flex items-center p-4 gap-3 ring-1 ring-[#DADEE4] rounded-2xl hover:ring-2 hover:ring-[#FF6129] transition-all duration-300">
-                <div class="w-[70px] h-[70px] flex shrink-0">
-                    <img src="assets/icon/Web Development 1-3.svg" class="object-contain" alt="icon">
-                </div>
-                <p class="font-bold text-lg">Software Development</p>
-            </a>
+            @endforeach
         </div>
     </section>
     <section id="Popular-Courses"
