@@ -119,13 +119,13 @@
         </div>
         <div class="grid grid-cols-4 gap-[30px]">
             @foreach ($categories as $category)
-            <a href="{{ route('front.category', $category->slug) }}"
-                class="card flex items-center p-4 gap-3 ring-1 ring-[#DADEE4] rounded-2xl hover:ring-2 hover:ring-[#FF6129] transition-all duration-300">
-                <div class="w-[70px] h-[70px] flex shrink-0">
-                    <img src="{{ Storage::url($category->icon) }}" class="object-contain" alt="icon">
-                </div>
-                <p class="font-bold text-lg">{{ $category->name }}</p>
-            </a>
+                <a href="{{ route('front.category', $category->slug) }}"
+                    class="card flex items-center p-4 gap-3 ring-1 ring-[#DADEE4] rounded-2xl hover:ring-2 hover:ring-[#FF6129] transition-all duration-300">
+                    <div class="w-[70px] h-[70px] flex shrink-0">
+                        <img src="{{ Storage::url($category->icon) }}" class="object-contain" alt="icon">
+                    </div>
+                    <p class="font-bold text-lg">{{ $category->name }}</p>
+                </a>
             @endforeach
         </div>
     </section>
@@ -249,9 +249,16 @@
                 <h2 class="font-bold text-[36px] leading-[52px]">Learn From Anywhere,<br>Anytime You Want</h2>
                 <p class="text-[#475466] text-lg leading-[34px]">Growing new skills would be more flexible without <br>
                     limit we help you to access all course materials.</p>
-                <a href="{{ route('front.pricing') }}"
+                {{-- <a href="{{ route('front.pricing') }}"
                     class="text-white font-semibold rounded-[30px] p-[16px_32px] bg-[#FF6129] transition-all duration-300 hover:shadow-[0_10px_20px_0_#FF612980] w-fit">Check
-                    Pricing</a>
+                    Pricing</a> --}}
+                @if (!Auth::user())
+                    <a href="{{ route('login', ['from_pricing' => true]) }}"
+                        class="text-white font-semibold rounded-[30px] p-[16px_32px] bg-[#FF6129] transition-all duration-300 hover:shadow-[0_10px_20px_0_#FF612980] w-fit">Pricing</a>
+                @elseif (Auth::user()->hasRole('student') || Auth::user()->hasRole('owner') || Auth::user()->hasRole('teacher'))
+                    <a
+                        href="{{ route('front.pricing') }}"class="text-white font-semibold rounded-[30px] p-[16px_32px] bg-[#FF6129] transition-all duration-300 hover:shadow-[0_10px_20px_0_#FF612980] w-fit">Pricing</a>
+                @endif
             </div>
         </section>
     @endif
